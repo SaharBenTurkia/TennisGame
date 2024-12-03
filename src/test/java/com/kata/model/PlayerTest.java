@@ -8,15 +8,27 @@ public class PlayerTest {
     @Test
     public void PlayerTest_when_winBall2_calculateScore_shouldReturn_30() {
         Player player = new Player();
-        player.calculateScore(2);
+        player.calculateScore(2, 0);
         Assertions.assertEquals("30", player.getScore());
     }
 
     @Test
     public void PlayerTest_when_winBall4_calculateScore_shouldReturn_40plus() {
-        Player player = new Player();
-        player.calculateScore(4);
-        Assertions.assertEquals("40+", player.getScore());
+        Player playerA = new Player();
+        playerA.setBalls(4);
+        playerA.calculateScore(playerA.getBalls(),0);
+        Assertions.assertEquals("40+", playerA.getScore());
+    }
+    @Test
+    public void PlayerTest_calculateScore() {
+        Player playerA = new Player();
+        Player playerB = new Player();
+        playerA.setBalls(7);
+        playerB.setBalls(5);
+        playerA.calculateScore(playerA.getBalls(), playerB.getBalls());
+        playerB.calculateScore(playerB.getBalls(), playerA.getBalls());
+        Assertions.assertEquals("40+", playerA.getScore());
+        Assertions.assertEquals("40", playerB.getScore());
     }
 
     @Test

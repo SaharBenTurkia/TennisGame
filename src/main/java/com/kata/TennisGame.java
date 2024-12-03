@@ -4,7 +4,7 @@ import com.kata.model.Player;
 
 public class TennisGame {
     public static void main(String[] args) {
-        String input = "ABABABABABABBB";
+        String input = "ABABAA";
         play(input);
     }
 
@@ -19,11 +19,8 @@ public class TennisGame {
             }
 
             // display scores
-            playerA.calculateScore(playerA.getBalls());
-            playerB.calculateScore(playerB.getBalls());
-            if (playerA.getBalls() < 4 && playerB.getBalls() < 4) {
-                System.out.println("Player A : " + playerA.getScore() + " / Player B : " + playerB.getScore());
-            }
+            playerA.calculateScore(playerA.getBalls(), playerB.getBalls());
+            playerB.calculateScore(playerB.getBalls(), playerA.getBalls());
 
             // display result
             if (playerA.getBalls() >= 4 && playerA.getBalls() - playerB.getBalls() >= 2) {
@@ -32,6 +29,8 @@ public class TennisGame {
             } else if (playerB.getBalls() >= 4 && playerB.getBalls() - playerA.getBalls() >= 2) {
                 System.out.println("Player B wins the game");
                 return;
+            } else {
+                System.out.println("Player A : " + playerA.getScore() + " / Player B : " + playerB.getScore());
             }
         }
         // case of incomplete game

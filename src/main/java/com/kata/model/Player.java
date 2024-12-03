@@ -27,13 +27,20 @@ public class Player {
         this.score = score;
     }
 
-    public void calculateScore(Integer balls) {
+    public void calculateScore(Integer balls, Integer ballsOpponent) {
         switch (balls) {
             case 0 -> this.setScore(Score.ZERO.getValue());
             case 1 -> this.setScore(Score.FIFTEEN.getValue());
             case 2 -> this.setScore(Score.THIRTY.getValue());
             case 3 -> this.setScore(Score.FORTY.getValue());
-            default -> this.setScore(Score.ADVANTAGE.getValue());
+            default -> {
+                if (balls > ballsOpponent) {
+                    this.setScore(Score.ADVANTAGE.getValue());
+                } else {
+                    this.setScore(Score.FORTY.getValue());
+                }
+
+            }
         }
 
     }
